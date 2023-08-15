@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+
+        <TextView
+            android:id="@+id/arithmetic_operations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="50dp"
+            android:text="91+343"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="= 434"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="@+id/arithmetic_operations"
+            app:layout_constraintTop_toBottomOf="@+id/arithmetic_operations" />
+
+        <View
+            android:id="@+id/border"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:columnCount="4"
+        android:rowCount="5">
+
+        <Button
+            android:id="@+id/all_delete"
+            style="@style/buttonOperation"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="AC" />
+
+        <Button
+            android:id="@+id/percentage"
+            style="@style/buttonOperation"
+            android:layout_margin="1dp"
+            android:text="%" />
+
+        <Button
+            android:id="@+id/one_delete"
+            style="@style/buttonOperation"
+            android:layout_margin="1dp"
+            android:text="del" />
+
+        <Button
+            android:id="@+id/division"
+            style="@style/buttonOperation"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="÷" />
+
+
+        <Button
+            android:id="@+id/one"
+            style="@style/buttonNumber"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/two"
+            style="@style/buttonNumber"
+            android:layout_margin="1dp"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/three"
+            style="@style/buttonNumber"
+            android:layout_margin="1dp"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/multiplication"
+            style="@style/buttonOperation"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="×" />
+
+
+        <Button
+            android:id="@+id/four"
+            style="@style/buttonNumber"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/five"
+            style="@style/buttonNumber"
+            android:layout_margin="1dp"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/six"
+            style="@style/buttonNumber"
+            android:layout_margin="1dp"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/subtraction"
+            style="@style/buttonOperation"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/seven"
+            style="@style/buttonNumber"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/eight"
+            style="@style/buttonNumber"
+            android:layout_margin="1dp"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/nine"
+            style="@style/buttonNumber"
+            android:layout_margin="1dp"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/addition"
+            style="@style/buttonOperation"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="+" />
+
+
+        <Button
+            android:id="@+id/point"
+            style="@style/buttonNumber"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="," />
+
+        <Button
+            android:id="@+id/zero"
+            style="@style/buttonNumber"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/equal_mark"
+            style="@style/buttonOperationEqual"
+            android:layout_row="2"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="1dp"
+
+            android:layout_marginTop="1dp"
+            android:text="=" />
+
+
+    </GridLayout>
+
+</LinearLayout>
