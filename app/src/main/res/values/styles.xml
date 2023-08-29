@@ -19,7 +19,7 @@
 
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_rowWeight">1</item>
-    <item name="android:onClick">numberAct</item>
+        <item name="android:onClick">numberAct</item>
 
     </style>
 
@@ -34,6 +34,7 @@
 
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_rowWeight">1</item>
+        <item name="android:onClick">numberAct</item>
 
     </style>
 

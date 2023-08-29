@@ -20,7 +20,7 @@
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="70dp"
             android:textColor="@color/grey"
-            android:text="91+343"
+            android:text="0"
             android:textSize="25sp"
 
             app:layout_constraintBottom_toTopOf="@+id/border"
