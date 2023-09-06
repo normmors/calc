@@ -15,19 +15,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        binding.allDelete.setOnClickListener(){
+        //first row
+        binding.allDelete.setOnClickListener{
             Toast.makeText(this, "allDelete", Toast.LENGTH_SHORT).show()
             binding.operations.text = ""
             binding.answer.text = ""
         }
-
         binding.percentage.setOnClickListener {calculateActions(it)}
-
         binding.oneDelete.setOnClickListener {
             if(binding.operations.length() > 0)
             {
@@ -35,33 +32,26 @@ class MainActivity : AppCompatActivity() {
                 subSequence(0, binding.operations.length() - 1 )
             }
         }
-
         binding.division.setOnClickListener {calculateActions(it)}
-
-
+        //second row
         binding.one.setOnClickListener {calculateActions(it)}
         binding.two.setOnClickListener {calculateActions(it)}
         binding.three.setOnClickListener {calculateActions(it)}
         binding.multiplication.setOnClickListener {calculateActions(it)}
-
-
+        //third row
         binding.four.setOnClickListener {calculateActions(it)}
         binding.five.setOnClickListener {calculateActions(it)}
         binding.six.setOnClickListener {calculateActions(it)}
         binding.subtraction.setOnClickListener {calculateActions(it)}
-
-
+        //four row
         binding.seven.setOnClickListener {calculateActions(it)}
         binding.eight.setOnClickListener {calculateActions(it)}
         binding.nine.setOnClickListener {calculateActions(it)}
         binding.addition.setOnClickListener {calculateActions(it)}
-
-
+        //five row
         binding.point.setOnClickListener {calculateActions(it)}
         binding.zero.setOnClickListener {calculateActions(it)}
         binding.equalMark.setOnClickListener {}
-
-
 
 
 //        val buttons = listOf(button1, button2, button3, button4, button5, button6, button7, button8, button9)
@@ -72,13 +62,9 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //    }
-
-//        binding.oneDelete.setOnClickListener {
-//            if(it is Button){
-//                binding.operations.append(it.text)
-//            }
-//        }
     }
+
+
     private fun calculateActions(view : View){
         if(view is Button)
         {
@@ -86,10 +72,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    fun oneDelete(view: View){
-//        if(binding.operations.length() > 0){
-//            binding.operations.text = binding.operations.text.subSequence(0, binding.operations.length() - 1 )
-//        }
-//    }
 
 }
