@@ -66,10 +66,10 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun calculateActions(view : View){
-        if(view is Button)
-        {
-            binding.operations.append(view.text)
-        }
+
+            val text = (view as Button).text
+            binding.operations.append(text)
+
     }
 
 
