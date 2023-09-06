@@ -56,6 +56,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridLayout
+        android:id="@+id/gred"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
@@ -68,7 +69,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:text="AC" />
+            android:text="AC"/>
 
         <Button
             android:id="@+id/percentage"
@@ -80,7 +81,9 @@
             android:id="@+id/one_delete"
             style="@style/buttonOperation"
             android:layout_margin="1dp"
-            android:text="del" />
+            android:text="del"
+            android:onClick="oneDelete"
+            />
 
         <Button
             android:id="@+id/division"
@@ -97,7 +100,8 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:text="1" />
+            android:text="1"
+            />
 
         <Button
             android:id="@+id/two"
@@ -109,7 +113,8 @@
             android:id="@+id/three"
             style="@style/buttonNumber"
             android:layout_margin="1dp"
-            android:text="3" />
+            android:text="3"
+            />
 
         <Button
             android:id="@+id/multiplication"
