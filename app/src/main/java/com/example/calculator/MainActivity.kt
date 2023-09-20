@@ -11,7 +11,7 @@ import com.example.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var operationBe = true
+    private var operationBe = false
 
     private lateinit var binding: ActivityMainBinding
 
@@ -25,16 +25,24 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "allDelete", Toast.LENGTH_SHORT).show()
             binding.operations.text = "0"
             binding.answer.text = "0"
+            operationBe = false
         }
         binding.percentage.setOnClickListener {inputNumber(it)}
         binding.oneDelete.setOnClickListener {
-            if(binding.operations.length() > 0)
-            {
+            if(binding.operations.length() > 1) {
+                if (binding.operations.text.endsWith("÷")
+                    || binding.operations.text.endsWith("×")
+                    || binding.operations.text.endsWith("-")
+                    || binding.operations.text.endsWith("+")){
+                    operationBe = true
+                }
+
                 binding.operations.text = binding.operations.text.
                 subSequence(0, binding.operations.length() - 1 )
             }
         }
-        binding.division.setOnClickListener {inputNumber(it)}
+
+        binding.division.setOnClickListener {inputOperation(it)}
         //second row
         binding.one.setOnClickListener {inputNumber(it)}
         binding.two.setOnClickListener {inputNumber(it)}
@@ -69,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
             val text = (view as Button).text
             binding.operations.append(text)
+            binding.answer.append(text)
             operationBe = true
 
     }
@@ -79,6 +88,11 @@ class MainActivity : AppCompatActivity() {
             binding.operations.append(text)
             operationBe = false
         }
+//        else {
+//            val text = (view as Button).text
+//            val text2 = binding.operations.text.length - 1
+//            binding.operations.text = binding.operations.text.replace("text2", "text")
+//        }
     }
 
 
