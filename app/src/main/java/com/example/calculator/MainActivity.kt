@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.example.calculator.databinding.ActivityMainBinding
-//import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,18 +43,9 @@ class MainActivity : AppCompatActivity() {
         binding.zero.setOnClickListener {inputNumber(it)}
         binding.equalMark.setOnClickListener {result(it)}
 
-/*        val buttons = listOf(button1, button2, button3, button4, button5, button6, button7, button8, button9)
-        buttons.forEach { button ->
-            button.setOnClickListener { view ->
-                val buttonText = (view as Button).text
-                showToast("Кнопка $buttonText была нажата")
-            }
-        }
-    }*/
     }
 
     private fun allClean(){
-    //Toast.makeText(this, "allDelete", Toast.LENGTH_SHORT).show()
         binding.operations.text = "0"
         binding.answer.text = "0"
         operationBe = false
@@ -63,11 +53,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun oneDelete(){
         if(binding.operations.length() > 1) {
-//                operationBe = (binding.operations.text.endsWith("÷")
-//                        || binding.operations.text.endsWith("×")
-//                        || binding.operations.text.endsWith("-")
-//                        || binding.operations.text.endsWith("+"))
-
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
             operationBe = true
