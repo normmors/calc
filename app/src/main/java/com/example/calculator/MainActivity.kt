@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.example.calculator.databinding.ActivityMainBinding
 //import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,27 +20,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //first row
-        binding.allDelete.setOnClickListener{
-            Toast.makeText(this, "allDelete", Toast.LENGTH_SHORT).show()
-            binding.operations.text = "0"
-            binding.answer.text = "0"
-            operationBe = false
-        }
+        binding.allClean.setOnClickListener{allClean()}
         binding.percentage.setOnClickListener {inputNumber(it)}
-        binding.oneDelete.setOnClickListener {
-            if(binding.operations.length() > 1) {
-                if (binding.operations.text.endsWith("÷")
-                    || binding.operations.text.endsWith("×")
-                    || binding.operations.text.endsWith("-")
-                    || binding.operations.text.endsWith("+")){
-                    operationBe = true
-                }
-
-                binding.operations.text = binding.operations.text.
-                subSequence(0, binding.operations.length() - 1 )
-            }
-        }
-
+        binding.oneDelete.setOnClickListener {oneDelete()}
         binding.division.setOnClickListener {inputOperation(it)}
         //second row
         binding.one.setOnClickListener {inputNumber(it)}
@@ -61,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         //five row
         binding.point.setOnClickListener {inputNumber(it)}
         binding.zero.setOnClickListener {inputNumber(it)}
-        binding.equalMark.setOnClickListener {}
+        binding.equalMark.setOnClickListener {result(it)}
 
 /*        val buttons = listOf(button1, button2, button3, button4, button5, button6, button7, button8, button9)
         buttons.forEach { button ->
@@ -73,6 +54,25 @@ class MainActivity : AppCompatActivity() {
     }*/
     }
 
+    private fun allClean(){
+    //Toast.makeText(this, "allDelete", Toast.LENGTH_SHORT).show()
+        binding.operations.text = "0"
+        binding.answer.text = "0"
+        operationBe = false
+    }
+
+    private fun oneDelete(){
+        if(binding.operations.length() > 1) {
+//                operationBe = (binding.operations.text.endsWith("÷")
+//                        || binding.operations.text.endsWith("×")
+//                        || binding.operations.text.endsWith("-")
+//                        || binding.operations.text.endsWith("+"))
+
+            binding.operations.text = binding.operations.text.
+            subSequence(0, binding.operations.length() - 1 )
+            operationBe = true
+        }
+    }
     private fun inputNumber(view : View){
 
             val text = (view as Button).text
@@ -81,19 +81,29 @@ class MainActivity : AppCompatActivity() {
             operationBe = true
 
     }
-
     private fun inputOperation(view: View){
-        if (operationBe){
-            val text = (view as Button).text
+
+        val text = (view as Button).text
+
+        if(binding.operations.text.endsWith("÷")
+            || binding.operations.text.endsWith("×")
+            || binding.operations.text.endsWith("-")
+            || binding.operations.text.endsWith("+")){
+//            val text2 = binding.operations.text.length - 1
+//            binding.operations.text = binding.operations.text.replace(text2, text)
+            binding.operations.text = binding.operations.text.
+            subSequence(0, binding.operations.length() - 1 )
+            binding.operations.append(text)
+        }
+        //if (operationBe)
+        else{
             binding.operations.append(text)
             operationBe = false
         }
-//        else {
-//            val text = (view as Button).text
-//            val text2 = binding.operations.text.length - 1
-//            binding.operations.text = binding.operations.text.replace("text2", "text")
-//        }
     }
 
+    private fun result(view: View){
+
+    }
 
 }
