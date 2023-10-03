@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
     private fun allClean(){
         binding.operations.text = "0"
         binding.answer.text = "0"
+        binding.operations.textSize = 30F
+        binding.answer.textSize = 25F
         operationBe = false
     }
 
@@ -57,14 +59,21 @@ class MainActivity : AppCompatActivity() {
             subSequence(0, binding.operations.length() - 1 )
             operationBe = true
         }
+        else{
+            binding.operations.text = "0"
+        }
     }
     private fun inputNumber(view : View){
 
-            val text = (view as Button).text
+        val text = (view as Button).text
+        if(binding.operations.text.startsWith("0")){
+            binding.operations.text = binding.operations.text.toString().replace("0", "")
+            binding.operations.append(text)
+        }else {
             binding.operations.append(text)
             binding.answer.append(text)
             operationBe = true
-
+        }
     }
     private fun inputOperation(view: View){
 
@@ -88,7 +97,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun result(view: View){
-
+        binding.operations.textSize = 25F
+        binding.answer.textSize = 30F
     }
+
 
 }
