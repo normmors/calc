@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         }
         else{
             binding.operations.text = "0"
+            binding.operations.textSize = 30F
+            binding.answer.textSize = 25F
         }
     }
     private fun inputNumber(view : View){
