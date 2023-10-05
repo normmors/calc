@@ -85,8 +85,6 @@ class MainActivity : AppCompatActivity() {
             || binding.operations.text.endsWith("×")
             || binding.operations.text.endsWith("-")
             || binding.operations.text.endsWith("+")){
-//            val text2 = binding.operations.text.length - 1
-//            binding.operations.text = binding.operations.text.replace(text2, text)
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
             binding.operations.append(text)
@@ -101,6 +99,7 @@ class MainActivity : AppCompatActivity() {
     private fun result(view: View){
         binding.operations.textSize = 25F
         binding.answer.textSize = 30F
+
     }
 
 
