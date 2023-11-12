@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var operationBe = false
     private var decimalSeparator = true
     private var zeroBe = false
+    private var resultat = "0"
 
     private lateinit var binding: ActivityMainBinding
 
@@ -47,15 +48,19 @@ class MainActivity : AppCompatActivity() {
         //five row
         binding.point.setOnClickListener {decimalSeparator(it)}
         binding.zero.setOnClickListener {inputNumber(it)}
-        binding.equalMark.setOnClickListener {result()}
+        binding.equalMark.setOnClickListener {equal()}
 
     }
+
+
 
     private fun allClean(){
         binding.operations.text = "0"
         binding.answer.text = ""
         binding.operations.textSize = 30F
         binding.answer.textSize = 25F
+
+        resultat = "0"
 
         operationBe = false
         decimalSeparator = true
@@ -76,7 +81,9 @@ class MainActivity : AppCompatActivity() {
 
             result()
         }
-
+        else if(startBe){
+            allClean()
+        }
         else{
             allClean()
         }
@@ -106,10 +113,16 @@ class MainActivity : AppCompatActivity() {
     private fun inputNumber(view : View){
 
         val text = (view as Button).text
-        if(startBe && text!="0"){
+        if(startBe){
+            allClean()
+            binding.operations.textSize = 30F
+            binding.answer.textSize = 25F
+
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
             binding.operations.append(text)
+
+
             startBe = false
 
         }
@@ -150,7 +163,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun equal() {
+        binding.operations.textSize = 25F
+        binding.answer.textSize = 30F
+
+        resultat = binding.answer.text.toString()
+        startBe = true
+        result()
+    }
+
     private fun result(){
+        //binding.operations.textSize = 25F
+        //binding.answer.textSize = 30F
 
         try {
 
