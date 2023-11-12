@@ -53,13 +53,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun allClean(){
         binding.operations.text = "0"
         binding.answer.text = ""
         binding.operations.textSize = 30F
-        binding.answer.textSize = 25F
+        binding.answer.textSize = 20F
 
         resultat = "0"
 
@@ -116,8 +114,6 @@ class MainActivity : AppCompatActivity() {
         val text = (view as Button).text
         if(startBe){
             allClean()
-            binding.operations.textSize = 30F
-            binding.answer.textSize = 25F
 
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
