@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var startBe = true
     private var operationBe = false
     private var decimalSeparator = true
+    private var zeroBe = true
 
     private lateinit var binding: ActivityMainBinding
 
@@ -58,10 +59,13 @@ class MainActivity : AppCompatActivity() {
 
         operationBe = false
         decimalSeparator = true
+        startBe = true
     }
 
     private fun oneDelete(){
         if(binding.operations.length() > 1) {
+
+
             if (binding.operations.text.endsWith(".")){
                 decimalSeparator = true
                 }
@@ -78,10 +82,7 @@ class MainActivity : AppCompatActivity() {
             decimalSeparator = true
         }*/
         else{
-            binding.operations.text = "0"
-            binding.operations.textSize = 30F
-            binding.answer.textSize = 25F
-            result()
+            allClean()
         }
     }
 
@@ -101,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         else if (decimalSeparator){
             binding.operations.append(text)
             decimalSeparator = false
+            startBe = false
         }
 
     }
@@ -109,24 +111,24 @@ class MainActivity : AppCompatActivity() {
     private fun inputNumber(view : View){
 
         val text = (view as Button).text
-        if(binding.operations.text.startsWith("0")){
-//            binding.operations.text = binding.operations.text.
-//            subSequence(0, binding.operations.length() - 1 )
-            binding.operations.text = binding.operations.text.toString().replace("0", "")
+        if(startBe){
+            binding.operations.text = binding.operations.text.
+            subSequence(0, binding.operations.length() - 1 )
+            //binding.operations.text = binding.operations.text.toString().replace("0", "")
             binding.operations.append(text)
-            result()
+            startBe = false
         }
-        else if (text == "0" && decimalSeparator){
-            binding.operations.append(text)
-            result()
+        else if (text == "0" && binding.operations.text.endsWith("0")
+            && decimalSeparator && !startBe){
+
         }
         else {
             binding.operations.append(text)
             operationBe = true
-            result()
         }
-
+        result()
     }
+
     private fun inputOperation(view: View){
 
         val text = (view as Button).text
@@ -144,6 +146,7 @@ class MainActivity : AppCompatActivity() {
             binding.operations.append(text)
             operationBe = false
             decimalSeparator = true
+            startBe = false
         }
     }
 
