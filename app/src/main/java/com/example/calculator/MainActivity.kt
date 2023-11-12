@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var startBe = true
     private var operationBe = false
     private var decimalSeparator = true
-    private var zeroBe = true
+    private var zeroBe = false
 
     private lateinit var binding: ActivityMainBinding
 
@@ -73,14 +73,10 @@ class MainActivity : AppCompatActivity() {
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
             operationBe = true
-            //decimalSeparator = true
+
             result()
         }
-/*        else if (binding.operations.text.endsWith(".")){
-            binding.operations.text = binding.operations.text.
-            subSequence(0, binding.operations.length() - 1 )
-            decimalSeparator = true
-        }*/
+
         else{
             allClean()
         }
@@ -94,15 +90,14 @@ class MainActivity : AppCompatActivity() {
                 || binding.operations.text.endsWith("×")
                 || binding.operations.text.endsWith("-")
                 || binding.operations.text.endsWith("+")){
-//
-//            binding.operations.append(text)
-//            decimalSeparator = false
-//            //result()
+
         }
         else if (decimalSeparator){
             binding.operations.append(text)
             decimalSeparator = false
             startBe = false
+
+            zeroBe = true
         }
 
     }
@@ -111,17 +106,19 @@ class MainActivity : AppCompatActivity() {
     private fun inputNumber(view : View){
 
         val text = (view as Button).text
-        if(startBe){
+        if(startBe && text!="0"){
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
-            //binding.operations.text = binding.operations.text.toString().replace("0", "")
             binding.operations.append(text)
             startBe = false
-        }
-        else if (text == "0" && binding.operations.text.endsWith("0")
-            && decimalSeparator && !startBe){
 
         }
+        else if (text == "0"
+            && binding.operations.text.endsWith("0")
+            && zeroBe ==false){
+
+        }
+
         else {
             binding.operations.append(text)
             operationBe = true
@@ -141,18 +138,19 @@ class MainActivity : AppCompatActivity() {
             subSequence(0, binding.operations.length() - 1 )
             binding.operations.append(text)
         }
-        //if (operationBe)
+
         else{
             binding.operations.append(text)
             operationBe = false
             decimalSeparator = true
+
+
             startBe = false
+            zeroBe = false
         }
     }
 
     private fun result(){
-        //binding.operations.textSize = 25F
-        //binding.answer.textSize = 30F
 
         try {
 
@@ -160,7 +158,6 @@ class MainActivity : AppCompatActivity() {
         val results = Expression(equal).calculate()
 
         if (results.isNaN()){
-            //Toast.LENGTH_SHORT.toString()
             binding.answer.text = "Error"
         }else{
             binding.answer.text = results.toString()
