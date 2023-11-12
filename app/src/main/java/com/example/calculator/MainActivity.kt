@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.example.calculator.databinding.ActivityMainBinding
+import org.mariuszgromada.math.mxparser.Expression
 
 
 class MainActivity : AppCompatActivity() {
 
     private var operationBe = false
+    private var decimalSeparator = true
 
     private lateinit var binding: ActivityMainBinding
 
@@ -39,18 +42,20 @@ class MainActivity : AppCompatActivity() {
         binding.nine.setOnClickListener {inputNumber(it)}
         binding.addition.setOnClickListener {inputOperation(it)}
         //five row
-        binding.point.setOnClickListener {inputNumber(it)}
+        binding.point.setOnClickListener {decimalSeparator(it)}
         binding.zero.setOnClickListener {inputNumber(it)}
-        binding.equalMark.setOnClickListener {result(it)}
+        binding.equalMark.setOnClickListener {result()}
 
     }
 
     private fun allClean(){
         binding.operations.text = "0"
-        binding.answer.text = "0"
+        binding.answer.text = ""
         binding.operations.textSize = 30F
         binding.answer.textSize = 25F
+
         operationBe = false
+        decimalSeparator = true
     }
 
     private fun oneDelete(){
@@ -58,24 +63,51 @@ class MainActivity : AppCompatActivity() {
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
             operationBe = true
+            result()
         }
         else{
             binding.operations.text = "0"
             binding.operations.textSize = 30F
             binding.answer.textSize = 25F
+            result()
         }
     }
+
+
+    private fun decimalSeparator(view: View){
+        val text = (view as Button).text
+
+        if(binding.operations.text.endsWith("÷")
+                || binding.operations.text.endsWith("×")
+                || binding.operations.text.endsWith("-")
+                || binding.operations.text.endsWith("+")){
+//
+//            binding.operations.append(text)
+//            decimalSeparator = false
+//            //result()
+        }
+        else if (decimalSeparator){
+            binding.operations.append(text)
+            decimalSeparator = false
+        }
+
+    }
+
+
     private fun inputNumber(view : View){
 
         val text = (view as Button).text
-        if(binding.operations.text.startsWith("0")){
+        if(binding.operations.text.endsWith("0")){
             binding.operations.text = binding.operations.text.toString().replace("0", "")
             binding.operations.append(text)
-        }else {
-            binding.operations.append(text)
-            binding.answer.append(text)
-            operationBe = true
+            result()
         }
+        else {
+            binding.operations.append(text)
+            operationBe = true
+            result()
+        }
+
     }
     private fun inputOperation(view: View){
 
@@ -93,13 +125,28 @@ class MainActivity : AppCompatActivity() {
         else{
             binding.operations.append(text)
             operationBe = false
+            decimalSeparator = true
         }
     }
 
-    private fun result(view: View){
-        binding.operations.textSize = 25F
-        binding.answer.textSize = 30F
+    private fun result(){
+        //binding.operations.textSize = 25F
+        //binding.answer.textSize = 30F
 
+        try {
+
+        var equal = binding.operations.text.toString()
+        val results = Expression(equal).calculate()
+
+        if (results.isNaN()){
+            //Toast.LENGTH_SHORT.toString()
+            binding.answer.text = "Error"
+        }else{
+            binding.answer.text = results.toString()
+        }
+        }catch (e: Exception){
+            binding.answer.text = "Error"
+        }
     }
 
 

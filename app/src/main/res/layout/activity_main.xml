@@ -23,6 +23,8 @@
             android:text="0"
             android:textSize="25sp"
 
+            android:maxLines="1"
+            android:ellipsize="start"
             app:layout_constraintBottom_toTopOf="@+id/border"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -31,10 +33,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="0"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="30sp"
             android:layout_marginBottom="30dp"
+
+            android:maxLines="1"
 
             app:layout_constraintBottom_toTopOf="@+id/border"
             app:layout_constraintEnd_toEndOf="@+id/operations"
@@ -187,7 +191,7 @@
             style="@style/buttonNumber"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
-            android:text="," />
+            android:text="." />
 
         <Button
             android:id="@+id/zero"
