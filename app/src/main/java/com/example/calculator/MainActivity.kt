@@ -11,6 +11,8 @@ import org.mariuszgromada.math.mxparser.Expression
 
 class MainActivity : AppCompatActivity() {
 
+
+    private var startBe = true
     private var operationBe = false
     private var decimalSeparator = true
 
@@ -60,11 +62,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun oneDelete(){
         if(binding.operations.length() > 1) {
+            if (binding.operations.text.endsWith(".")){
+                decimalSeparator = true
+                }
+
             binding.operations.text = binding.operations.text.
             subSequence(0, binding.operations.length() - 1 )
             operationBe = true
+            //decimalSeparator = true
             result()
         }
+/*        else if (binding.operations.text.endsWith(".")){
+            binding.operations.text = binding.operations.text.
+            subSequence(0, binding.operations.length() - 1 )
+            decimalSeparator = true
+        }*/
         else{
             binding.operations.text = "0"
             binding.operations.textSize = 30F
@@ -97,8 +109,14 @@ class MainActivity : AppCompatActivity() {
     private fun inputNumber(view : View){
 
         val text = (view as Button).text
-        if(binding.operations.text.endsWith("0")){
+        if(binding.operations.text.startsWith("0")){
+//            binding.operations.text = binding.operations.text.
+//            subSequence(0, binding.operations.length() - 1 )
             binding.operations.text = binding.operations.text.toString().replace("0", "")
+            binding.operations.append(text)
+            result()
+        }
+        else if (text == "0" && decimalSeparator){
             binding.operations.append(text)
             result()
         }
