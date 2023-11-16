@@ -6,3 +6,6 @@
 - вычитание
 - умножение
 - деление
+
+
+https://github.com/normmors/calc/assets/146109240/0fa14d16-471c-43bb-9918-8b1ee3a78c22
